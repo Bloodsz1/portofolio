@@ -12,9 +12,11 @@ export default {
         muted: '#A09C97',
         crimson: '#E32B3C',
         blood: '#8E1420',
+        coral: '#E5535F',
       },
       fontFamily: {
-        display: ['"Playfair Display"', 'Georgia', 'serif'],
+        display: ['Anton', 'Impact', '"Arial Narrow"', 'sans-serif'],
+        script: ['"Caveat Brush"', '"Segoe Script"', 'cursive'],
         sans: ['Inter', 'system-ui', 'sans-serif'],
       },
       letterSpacing: {
@@ -45,6 +47,10 @@ export default {
           '0%': { transform: 'translate(-40px, -40px)', opacity: '0' },
           '100%': { transform: 'translate(0, 0)', opacity: '1' },
         },
+        float: {
+          '0%, 100%': { transform: 'translateY(0) rotate(var(--r, 0deg))' },
+          '50%': { transform: 'translateY(-18px) rotate(calc(var(--r, 0deg) + 3deg))' },
+        },
       },
       animation: {
         ticker: 'ticker 28s linear infinite',
@@ -53,6 +59,7 @@ export default {
         scan: 'scan 1.6s ease-in-out infinite',
         'bleed-in': 'bleed-in 2.4s cubic-bezier(0.22, 1, 0.36, 1) both',
         'block-in': 'block-in 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both',
+        float: 'float 11s ease-in-out infinite',
       },
     },
   },

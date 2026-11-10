@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import { Menu, Pause, Play, X } from 'lucide-react';
+import { AnimatePresence, motion, useScroll, useSpring } from 'framer-motion';
+import { ArrowUpRight, Menu, Pause, Play, X } from 'lucide-react';
 import { navItems } from '@/data/portfolio';
 
 interface NavbarProps {
@@ -12,6 +12,8 @@ export default function Navbar({ motionOff, onToggleMotion }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<string>('home');
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30, restDelta: 0.001 });
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -44,6 +46,11 @@ export default function Navbar({ motionOff, onToggleMotion }: NavbarProps) {
         scrolled || open ? 'border-b border-line bg-ink/95 backdrop-blur-md' : 'border-b border-transparent bg-transparent'
       }`}
     >
+      <motion.div
+        style={{ scaleX: progress }}
+        className="absolute inset-x-0 top-0 h-[2px] origin-left bg-crimson"
+        aria-hidden="true"
+      />
       <nav aria-label="Navigasi utama" className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6 lg:px-10">
         <a href="#home" onClick={closeMenu} className="font-display text-2xl tracking-wide text-paper">
           FARROS<span className="text-crimson">.</span>
@@ -61,13 +68,13 @@ export default function Navbar({ motionOff, onToggleMotion }: NavbarProps) {
                     isActive ? 'text-paper' : 'text-muted'
                   }`}
                 >
-                  {item.label}
                   <span
-                    className={`absolute inset-x-0 -bottom-0.5 h-px origin-left bg-crimson transition-transform duration-500 ${
-                      isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                    className={`absolute -left-3 top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-crimson transition-opacity duration-300 ${
+                      isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-60'
                     }`}
                     aria-hidden="true"
                   />
+                  {item.label}
                 </a>
               </li>
             );
@@ -75,6 +82,13 @@ export default function Navbar({ motionOff, onToggleMotion }: NavbarProps) {
         </ul>
 
         <div className="flex items-center gap-2">
+          <a
+            href="#contact"
+            className="mr-3 hidden items-center gap-2 text-sm font-medium text-paper transition-colors duration-300 hover:text-crimson xl:inline-flex"
+          >
+            Hubungi saya
+            <ArrowUpRight size={16} aria-hidden="true" className="text-crimson" />
+          </a>
           <button
             type="button"
             onClick={onToggleMotion}

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { MotionConfig } from 'framer-motion';
+import FloatingLogos from '@/components/FloatingLogos';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import Ticker from '@/components/Ticker';
@@ -16,13 +17,14 @@ function App() {
 
   return (
     <MotionConfig reducedMotion={motionOff ? 'always' : 'user'}>
-      <div data-motion={motionOff ? 'off' : 'on'} className="relative grain min-h-screen overflow-x-clip bg-ink">
+      <div data-motion={motionOff ? 'off' : 'on'} className="relative isolate grain min-h-screen overflow-x-clip bg-ink">
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-paper focus:px-4 focus:py-2 focus:text-ink"
         >
           Lewati ke konten
         </a>
+        <FloatingLogos />
         <Navbar motionOff={motionOff} onToggleMotion={() => setMotionOff((v) => !v)} />
         <main id="main">
           <Hero />

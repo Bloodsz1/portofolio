@@ -1,11 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowUpRight, Check, Copy, Download, Github, Mail, Video } from 'lucide-react';
+import { ArrowUpRight, Check, Copy, Download, Github, Instagram, Mail, Video } from 'lucide-react';
 import Reveal from '@/components/Reveal';
 import SectionHeader from '@/components/SectionHeader';
+import TiltCard from '@/components/TiltCard';
 import {
   CV_URL,
   EMAIL,
   GITHUB_URL,
+  INSTAGRAM_HANDLE,
+  INSTAGRAM_URL,
   TIKTOK_HANDLE,
   TIKTOK_URL,
   contactCopy,
@@ -39,15 +42,30 @@ export default function Contact() {
       <div className="mx-auto max-w-6xl px-6 lg:px-10">
         <SectionHeader index="06" label="Kontak" title="Mari" accent="terhubung." description={contactCopy} />
 
-        <Reveal className="relative mb-6 h-56 overflow-hidden rounded-2xl border border-line md:h-72">
-          <img
-            src={images.contact.src}
-            alt={images.contact.alt}
-            loading="lazy"
-            className="h-full w-full object-cover transition-transform duration-[1500ms] hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-crimson mix-blend-multiply opacity-60" aria-hidden="true" />
-          <div className="absolute inset-0 bg-ink/40" aria-hidden="true" />
+        <Reveal className="mb-6">
+          <TiltCard max={4}>
+            <div className="flex flex-col items-center gap-6 overflow-hidden rounded-2xl border border-line bg-surface p-6 sm:flex-row sm:gap-8 md:p-8">
+              <div className="relative shrink-0">
+                <div className="absolute -bottom-2 -right-2 h-full w-full rounded-2xl bg-crimson" aria-hidden="true" />
+                <img
+                  src={images.contact.src}
+                  alt={images.contact.alt}
+                  width={480}
+                  height={480}
+                  loading="lazy"
+                  className="relative h-40 w-40 rounded-2xl border border-line object-cover md:h-52 md:w-52"
+                />
+              </div>
+              <div className="text-center sm:text-left">
+                <p className="text-xs font-medium uppercase tracking-label text-coral">Farros · Bloodsz1</p>
+                <p className="mt-3 font-display text-4xl leading-[0.95] text-paper md:text-6xl">
+                  Ayo bangun
+                  <br />
+                  sesuatu bersama<span className="text-crimson">.</span>
+                </p>
+              </div>
+            </div>
+          </TiltCard>
         </Reveal>
 
         <Reveal className="grid gap-4 md:grid-cols-2">
@@ -89,6 +107,22 @@ export default function Contact() {
               <span>
                 <span className="block text-xs font-medium uppercase tracking-label text-muted">TikTok</span>
                 <span className="mt-1 block font-display text-2xl text-paper md:text-3xl">{TIKTOK_HANDLE}</span>
+              </span>
+            </span>
+            <ArrowUpRight size={22} aria-hidden="true" className={arrowClass} />
+          </a>
+
+          <a
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${cardClass} ${CV_URL ? '' : 'md:col-span-2'}`}
+          >
+            <span className="flex items-center gap-5">
+              <Instagram size={28} aria-hidden="true" className="text-paper" />
+              <span>
+                <span className="block text-xs font-medium uppercase tracking-label text-muted">Instagram</span>
+                <span className="mt-1 block font-display text-2xl text-paper md:text-3xl">{INSTAGRAM_HANDLE}</span>
               </span>
             </span>
             <ArrowUpRight size={22} aria-hidden="true" className={arrowClass} />

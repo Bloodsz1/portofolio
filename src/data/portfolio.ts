@@ -1,8 +1,10 @@
 export const NAME = 'Abdulloh Farros';
 export const EMAIL = 'abdullohfarros@gmail.com';
 export const GITHUB_URL = 'https://github.com/Bloodsz1';
-export const TIKTOK_HANDLE = '@bloods_2.0';
-export const TIKTOK_URL = 'https://www.tiktok.com/@bloods_2.0';
+export const TIKTOK_HANDLE = '@farros.z1';
+export const TIKTOK_URL = 'https://www.tiktok.com/@farros.z1';
+export const INSTAGRAM_HANDLE = '@farros.py';
+export const INSTAGRAM_URL = 'https://www.instagram.com/farros.py';
 
 /**
  * Tombol "Unduh CV" di Hero dan Contact.
@@ -12,17 +14,18 @@ export const TIKTOK_URL = 'https://www.tiktok.com/@bloods_2.0';
 export const CV_URL: string | null = null;
 
 /**
- * Foto profil untuk section About.
- * Taruh foto di `public/` (mis. public/foto-farros.jpg), lalu isi
- * { src: '/foto-farros.jpg', alt: 'Foto Abdulloh Farros' }.
- * Biarkan null untuk menampilkan monogram "AF".
+ * Foto profil hitam-putih untuk Hero (dan monogram diganti di About bila diisi).
+ * File: public/images/farros.webp
  */
-export const PROFILE_PHOTO: { src: string; alt: string } | null = null;
+export const PROFILE_PHOTO: { src: string; alt: string } | null = {
+  src: '/images/farros.webp',
+  alt: 'Potret hitam putih Abdulloh Farros memakai kacamata dan jas',
+};
 
 export const images = {
   contact: {
-    src: 'https://images.pexels.com/photos/11467638/pexels-photo-11467638.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-    alt: 'Tangan di tengah cahaya merah yang pekat',
+    src: '/images/github-avatar.webp',
+    alt: 'Foto profil GitHub Abdulloh Farros di perbukitan berkabut',
   },
 } as const;
 
@@ -40,22 +43,23 @@ export const heroCopy = {
   location: 'INDONESIA',
   positioning: 'Aspiring AI Applied Engineer',
   greeting: "Hello, I'm",
-  roles: ['Python Developer &', 'Content Creator'] as const,
+  roles: ['Python Developer &', 'Applied AI Learner'] as const,
   headline: 'Membangun solusi praktis lewat kode, AI, dan otomasi.',
   tagline: ['Membangun solusi praktis', 'lewat kode, AI, dan otomasi.'] as const,
   description:
-    'Saya sedang membangun fondasi di software development dan applied AI. Saya belajar dengan membuat: aplikasi Python, alur otomasi, dan konten yang performanya bisa diukur.',
+    'Saya sedang membangun fondasi di software development dan applied AI. Saya belajar dengan membuat: aplikasi Python, alur otomasi, dan integrasi API.',
 };
 
 /**
- * Logo yang melayang di latar belakang seluruh halaman.
- * Untuk menambah logo Claude: taruh file resmi dari Anthropic di `public/logos/claude.png`
- * lalu hilangkan tanda komentar pada baris di bawah.
+ * Logo yang melayang di latar belakang seluruh halaman (PNG transparan di public/logos/).
+ * Urutan mengikuti posisi di FloatingLogos.tsx.
  */
 export const backgroundLogos: { name: string; src: string }[] = [
   { name: 'Python', src: '/logos/python.png' },
   { name: 'Visual Studio Code', src: '/logos/vscode.png' },
-  // { name: 'Claude', src: '/logos/claude.png' },
+  { name: 'Claude', src: '/logos/claude.png' },
+  { name: 'OpenAI', src: '/logos/openai.png' },
+  { name: 'Folder', src: '/logos/folder.png' },
 ];
 
 export const tickerItems = [
@@ -64,15 +68,15 @@ export const tickerItems = [
   'Applied AI',
   'Integrasi API',
   'Otomasi',
-  'Content Creator',
   'Investasi Saham',
+  'Investasi Bitcoin',
 ];
 
 export const aboutParagraphs = [
   'Saya Abdulloh Farros, biasa dipanggil Farros. Saya tertarik pada pemrograman, artificial intelligence, dan otomasi, terutama bagaimana ketiganya bisa dipakai untuk pekerjaan nyata.',
   'Saya percaya memahami teknologi tidak cukup dengan teori. Saya ingin membangun sesuatu, memahami bagaimana sistem bekerja, dan membuat solusi yang benar-benar bisa dipakai. Proyek-proyek di portofolio ini adalah latihan nyata: mengelola tugas, mengelola perpustakaan, dan melacak performa konten.',
   'Saat ini saya memperdalam Python, software development, integrasi API, dan penggunaan model AI di dalam aplikasi.',
-  `Di luar kode, saya membuat konten di TikTok (${TIKTOK_HANDLE}) dan aktif berinvestasi di bursa saham Indonesia (IDX).`,
+  'Di luar kode, saya aktif berinvestasi di bursa saham Indonesia (IDX) dan juga di Bitcoin.',
 ];
 
 export type ProjectStatus = 'selesai' | 'berjalan' | 'rencana';
@@ -254,8 +258,8 @@ export const certificates: Certificate[] = [
     title: "CS50's Introduction to Programming with Python",
     issuer: 'Harvard University · CS50',
     badge: 'CS50P',
-    file: null,
-    verifyUrl: null,
+    file: { src: '/certificates/cs50p.webp', alt: 'Sertifikat CS50P Abdulloh Farros dari Harvard CS50', kind: 'image' },
+    verifyUrl: 'https://cs50.harvard.edu/certificates/be144f2b-476b-43ba-b9d3-b6eaaeb86114',
   },
 ];
 

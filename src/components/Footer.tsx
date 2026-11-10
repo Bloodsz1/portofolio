@@ -1,5 +1,5 @@
-import { Github, Video } from 'lucide-react';
-import { GITHUB_URL, TIKTOK_HANDLE, TIKTOK_URL } from '@/data/portfolio';
+import { Github, Instagram, Video } from 'lucide-react';
+import { GITHUB_URL, INSTAGRAM_HANDLE, INSTAGRAM_URL, TIKTOK_HANDLE, TIKTOK_URL } from '@/data/portfolio';
 
 export default function Footer() {
   return (
@@ -31,6 +31,15 @@ export default function Footer() {
             >
               <Video size={16} aria-hidden="true" />
               TikTok {TIKTOK_HANDLE}
+            </a>
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 transition-colors duration-300 hover:text-paper"
+            >
+              <Instagram size={16} aria-hidden="true" />
+              Instagram {INSTAGRAM_HANDLE}
             </a>
           </div>
           <p>&copy; {new Date().getFullYear()} Abdulloh Farros. Hak cipta dilindungi.</p>

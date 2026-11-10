@@ -16,7 +16,7 @@ export default function About() {
                   src={PROFILE_PHOTO.src}
                   alt={PROFILE_PHOTO.alt}
                   loading="lazy"
-                  className="h-full w-full object-cover grayscale transition-all duration-700 hover:grayscale-0"
+                  className="h-full w-full object-cover object-[50%_25%] transition-transform duration-700 hover:scale-105"
                 />
               ) : (
                 <div className="flex h-full w-full flex-col justify-between p-8">

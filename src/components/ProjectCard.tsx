@@ -2,6 +2,7 @@ import { ArrowUpRight, ExternalLink, Github } from 'lucide-react';
 import ProjectCover from '@/components/ProjectCover';
 import Reveal from '@/components/Reveal';
 import StatusBadge from '@/components/StatusBadge';
+import TiltCard from '@/components/TiltCard';
 import type { Project } from '@/data/portfolio';
 
 interface ProjectCardProps {
@@ -12,6 +13,7 @@ interface ProjectCardProps {
 export default function ProjectCard({ project, delay = 0 }: ProjectCardProps) {
   return (
     <Reveal delay={delay} className="h-full">
+      <TiltCard className="h-full">
       <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface transition-all duration-500 hover:-translate-y-1 hover:border-crimson/60 hover:shadow-[0_24px_60px_-24px_rgba(227,43,60,0.45)]">
         <div className="relative aspect-[16/10] overflow-hidden border-b border-line bg-raised">
           {project.image ? (
@@ -94,6 +96,7 @@ export default function ProjectCard({ project, delay = 0 }: ProjectCardProps) {
           )}
         </div>
       </article>
+      </TiltCard>
     </Reveal>
   );
 }

@@ -1,5 +1,6 @@
-import { motion } from 'framer-motion';
+import { motion, useSpring, useTransform } from 'framer-motion';
 import { ArrowDown, ArrowUpRight, Asterisk, Award, Download, Github, MapPin } from 'lucide-react';
+import { useWindowPointer } from '@/hooks/useWindowPointer';
 import { CV_URL, GITHUB_URL, NAME, PROFILE_PHOTO, heroCopy, heroStats } from '@/data/portfolio';
 
 const container = {
@@ -15,32 +16,49 @@ const item = {
 export default function Hero() {
   const firstName = (NAME.split(' ').pop() ?? NAME).toUpperCase();
 
+  // Parallax kedalaman: kata raksasa (jauh), foto (dekat, sedikit miring 3D).
+  const pointer = useWindowPointer();
+  const sx = useSpring(pointer.x, { stiffness: 70, damping: 20 });
+  const sy = useSpring(pointer.y, { stiffness: 70, damping: 20 });
+  const wordX = useTransform(sx, [-0.5, 0.5], [26, -26]);
+  const wordY = useTransform(sy, [-0.5, 0.5], [14, -14]);
+  const photoX = useTransform(sx, [-0.5, 0.5], [-14, 14]);
+  const photoY = useTransform(sy, [-0.5, 0.5], [-6, 6]);
+  const photoRotY = useTransform(sx, [-0.5, 0.5], [-5, 5]);
+  const photoRotX = useTransform(sy, [-0.5, 0.5], [3, -3]);
+
   return (
     <section id="home" className="relative flex min-h-[100svh] flex-col overflow-clip pt-16">
       {/* Kata raksasa di latar belakang */}
-      <div
+      <motion.div
+        style={{ x: wordX, y: wordY }}
         className="pointer-events-none absolute inset-x-0 top-[16%] flex select-none justify-center md:top-[14%]"
         aria-hidden="true"
       >
         <span className="whitespace-nowrap bg-gradient-to-b from-crimson/80 via-blood/60 to-transparent bg-clip-text font-display text-[clamp(5rem,23vw,24rem)] leading-[0.85] text-transparent">
           PORTFOLIO
         </span>
-      </div>
+      </motion.div>
 
       {/* Foto profil (opsional): muncul di tengah jika PROFILE_PHOTO diisi */}
       {PROFILE_PHOTO && (
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 top-24 flex items-end justify-center">
+        <motion.div
+          style={{ x: photoX, y: photoY, rotateX: photoRotX, rotateY: photoRotY, transformPerspective: 1100 }}
+          className="pointer-events-none absolute inset-x-0 bottom-0 top-24 flex items-end justify-center"
+        >
           <img
             src={PROFILE_PHOTO.src}
             alt={PROFILE_PHOTO.alt}
+            width={1024}
+            height={996}
             fetchPriority="high"
-            className="h-[80%] w-auto max-w-[80vw] object-contain object-bottom"
+            className="h-[72%] w-auto max-w-[110vw] object-contain object-bottom opacity-70 md:h-[88%] md:opacity-100"
             style={{
-              maskImage: 'linear-gradient(to bottom, black 78%, transparent)',
-              WebkitMaskImage: 'linear-gradient(to bottom, black 78%, transparent)',
+              maskImage: 'radial-gradient(ellipse 52% 62% at 50% 46%, black 52%, transparent 100%)',
+              WebkitMaskImage: 'radial-gradient(ellipse 52% 62% at 50% 46%, black 52%, transparent 100%)',
             }}
           />
-        </div>
+        </motion.div>
       )}
 
       <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col px-6 lg:px-10">
@@ -61,10 +79,10 @@ export default function Hero() {
           <div className="grid flex-1 items-end gap-12 pb-10 pt-20 lg:grid-cols-12 lg:pt-24">
             <div className="lg:col-span-6 xl:col-span-5">
               <motion.h1 variants={item} className="leading-none">
-                <span className="block -rotate-6 font-script text-5xl normal-case text-paper md:text-6xl">
+                <span className="mb-5 ml-1 block origin-bottom-left -rotate-3 pb-1 font-script text-4xl normal-case leading-tight text-paper md:mb-7 md:text-5xl">
                   {heroCopy.greeting}
                 </span>
-                <span className="mt-1 block font-display text-[clamp(4.5rem,13vw,10rem)] leading-[0.88] text-paper">
+                <span className="block font-display text-[clamp(4.5rem,13vw,10rem)] leading-[0.88] text-paper">
                   {firstName}
                   <span className="text-crimson">.</span>
                 </span>

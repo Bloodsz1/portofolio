@@ -1,4 +1,4 @@
-import { Award } from 'lucide-react';
+import { Award, ArrowUpRight } from 'lucide-react';
 import Reveal from '@/components/Reveal';
 import SectionHeader from '@/components/SectionHeader';
 import { certification } from '@/data/portfolio';
@@ -7,7 +7,7 @@ export default function Certification() {
   return (
     <section id="certification" className="relative border-t border-line py-24 md:py-36">
       <div className="mx-auto max-w-6xl px-6 lg:px-10">
-        <SectionHeader index="05" label="Education" title="Certification" />
+        <SectionHeader index="05" label="Pendidikan" title="Sertifikasi" />
 
         <Reveal>
           <article className="relative overflow-hidden rounded-2xl border border-line bg-surface p-8 md:p-14">
@@ -24,6 +24,17 @@ export default function Certification() {
                 <div>
                   <p className="text-xs font-medium uppercase tracking-label text-muted">Status</p>
                   <p className="mt-2 text-lg text-paper">{certification.status}</p>
+                  {certification.verifyUrl && (
+                    <a
+                      href={certification.verifyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-paper transition-colors duration-300 hover:text-crimson"
+                    >
+                      Verifikasi sertifikat
+                      <ArrowUpRight size={16} aria-hidden="true" />
+                    </a>
+                  )}
                 </div>
               </div>
             </div>

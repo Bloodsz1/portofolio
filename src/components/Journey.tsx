@@ -6,7 +6,7 @@ export default function Journey() {
   return (
     <section id="journey" className="relative border-t border-line py-24 md:py-36">
       <div className="mx-auto max-w-6xl px-6 lg:px-10">
-        <SectionHeader index="04" label="Learning Journey" title="The journey" />
+        <SectionHeader index="04" label="Perjalanan Belajar" title="Perjalanan belajar" />
 
         <div className="relative">
           <div className="absolute left-0 top-1.5 hidden h-px w-full bg-line md:block" aria-hidden="true" />

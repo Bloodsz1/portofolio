@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import { ArrowDownRight, MapPin } from 'lucide-react';
-import { NAME, heroCopy, images } from '@/data/portfolio';
+import { ArrowDownRight, Download, MapPin } from 'lucide-react';
+import { CV_URL, NAME, heroCopy, heroFacts, images } from '@/data/portfolio';
 
 const container = {
   hidden: {},
@@ -64,16 +64,40 @@ export default function Hero() {
               href="#projects"
               className="group inline-flex items-center justify-center gap-2 rounded-full bg-paper px-7 py-3.5 text-sm font-medium text-ink transition-all duration-300 hover:bg-crimson hover:text-paper hover:shadow-[0_0_48px_-6px_rgba(227,43,60,0.9)]"
             >
-              Explore My Projects
+              Lihat Proyek Saya
               <ArrowDownRight size={16} aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
             </a>
             <a
               href="#about"
               className="inline-flex items-center justify-center rounded-full border border-paper/30 px-7 py-3.5 text-sm font-medium text-paper transition-colors duration-300 hover:border-crimson hover:text-crimson"
             >
-              About Me
+              Tentang Saya
             </a>
+            {CV_URL && (
+              <a
+                href={CV_URL}
+                download
+                className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-3.5 text-sm font-medium text-muted transition-colors duration-300 hover:text-paper"
+              >
+                <Download size={16} aria-hidden="true" />
+                Unduh CV
+              </a>
+            )}
           </motion.div>
+
+          <motion.dl variants={item} className="mt-12 grid max-w-xl grid-cols-3 gap-6 border-t border-line pt-6">
+            {heroFacts.map((fact) => (
+              <div key={fact.label}>
+                <dt className="sr-only">{fact.label}</dt>
+                <dd>
+                  <span className="block font-display text-2xl leading-none text-paper md:text-3xl">{fact.value}</span>
+                  <span className="mt-2 block text-xs leading-snug text-muted" aria-hidden="true">
+                    {fact.label}
+                  </span>
+                </dd>
+              </div>
+            ))}
+          </motion.dl>
         </motion.div>
       </div>
     </section>

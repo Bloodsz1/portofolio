@@ -6,7 +6,7 @@ export default function TechStack() {
   return (
     <section id="tech-stack" className="relative border-t border-line py-24 md:py-36">
       <div className="mx-auto max-w-6xl px-6 lg:px-10">
-        <SectionHeader index="03" label="Tech Stack" title={<>Tools &amp;<br />technologies</>} />
+        <SectionHeader index="03" label="Tech Stack" title={<>Alat &amp;<br />teknologi</>} />
 
         <div className="grid gap-x-12 gap-y-12 lg:grid-cols-12">
           <div className="grid gap-10 sm:grid-cols-2 lg:col-span-7">
@@ -44,8 +44,8 @@ export default function TechStack() {
                 </span>
               </div>
 
-              <p className="mb-4 text-xs font-medium uppercase tracking-label text-crimson">Currently Learning</p>
-              <h3 className="font-display text-3xl leading-tight text-paper">What I&apos;m exploring now</h3>
+              <p className="mb-4 text-xs font-medium uppercase tracking-label text-crimson">Sedang dipelajari</p>
+              <h3 className="font-display text-3xl leading-tight text-paper">Yang sedang saya jelajahi</h3>
               <ul className="mt-6 space-y-4 border-t border-line pt-6">
                 {exploringItems.map((item) => (
                   <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-muted md:text-base">

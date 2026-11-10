@@ -15,7 +15,7 @@ export default function Projects() {
         <SectionHeader
           index="02"
           label="Proyek"
-          title={<>Proyek<br />pilihan</>}
+          title="Proyek" accent="pilihan."
           description="Proyek-proyek yang saya bangun untuk melatih logika pemrograman, struktur data, dan pengelolaan file. Semuanya bisa dilihat langsung di GitHub."
         />
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">

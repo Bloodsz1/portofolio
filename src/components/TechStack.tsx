@@ -6,7 +6,7 @@ export default function TechStack() {
   return (
     <section id="tech-stack" className="relative border-t border-line py-24 md:py-36">
       <div className="mx-auto max-w-6xl px-6 lg:px-10">
-        <SectionHeader index="03" label="Tech Stack" title={<>Alat &amp;<br />teknologi</>} />
+        <SectionHeader index="03" label="Tech Stack" title="Alat &" accent="teknologi." />
 
         <div className="grid gap-x-12 gap-y-12 lg:grid-cols-12">
           <div className="grid gap-10 sm:grid-cols-2 lg:col-span-7">

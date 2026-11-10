@@ -20,10 +20,6 @@ export const CV_URL: string | null = null;
 export const PROFILE_PHOTO: { src: string; alt: string } | null = null;
 
 export const images = {
-  hero: {
-    src: 'https://images.pexels.com/photos/8037008/pexels-photo-8037008.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-    alt: 'Laptop menyala di ruangan gelap pada malam hari',
-  },
   contact: {
     src: 'https://images.pexels.com/photos/11467638/pexels-photo-11467638.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
     alt: 'Tangan di tengah cahaya merah yang pekat',
@@ -43,10 +39,24 @@ export const navItems = [
 export const heroCopy = {
   location: 'INDONESIA',
   positioning: 'Aspiring AI Applied Engineer',
+  greeting: "Hello, I'm",
+  roles: ['Python Developer &', 'Content Creator'] as const,
   headline: 'Membangun solusi praktis lewat kode, AI, dan otomasi.',
+  tagline: ['Membangun solusi praktis', 'lewat kode, AI, dan otomasi.'] as const,
   description:
     'Saya sedang membangun fondasi di software development dan applied AI. Saya belajar dengan membuat: aplikasi Python, alur otomasi, dan konten yang performanya bisa diukur.',
 };
+
+/**
+ * Logo yang melayang di latar belakang seluruh halaman.
+ * Untuk menambah logo Claude: taruh file resmi dari Anthropic di `public/logos/claude.png`
+ * lalu hilangkan tanda komentar pada baris di bawah.
+ */
+export const backgroundLogos: { name: string; src: string }[] = [
+  { name: 'Python', src: '/logos/python.png' },
+  { name: 'Visual Studio Code', src: '/logos/vscode.png' },
+  // { name: 'Claude', src: '/logos/claude.png' },
+];
 
 export const tickerItems = [
   'Python',
@@ -90,6 +100,10 @@ export const projects: Project[] = [
   {
     number: '01',
     title: 'Library Management System',
+    image: {
+      src: '/projects/library.webp',
+      alt: 'Dasbor aplikasi perpustakaan FARROS: total buku, anggota, peminjaman terbaru, dan buku per subjek',
+    },
     category: 'Aplikasi Desktop',
     status: 'selesai',
     summary:
@@ -148,15 +162,6 @@ export const projects: Project[] = [
     features: [],
     tech: ['Python', 'HTTP & API', 'Model AI', 'n8n'],
   },
-];
-
-export const heroFacts = [
-  {
-    value: String(projects.filter((p) => p.status === 'selesai').length),
-    label: 'proyek selesai di GitHub',
-  },
-  { value: 'CS50P', label: 'sertifikat Harvard' },
-  { value: 'Python', label: 'bahasa utama' },
 ];
 
 export type TechStatus = 'studied' | 'exploring';
@@ -226,18 +231,51 @@ export const journeySteps = [
   },
 ];
 
-export const certification: {
+export interface Certificate {
+  number: string;
   title: string;
-  institution: string;
-  status: string;
-  /** Link verifikasi sertifikat (opsional). Tombol muncul otomatis jika diisi. */
+  issuer: string;
+  /** Teks besar di sisi kanan baris (tahun atau nama program). */
+  badge: string;
+  /**
+   * Berkas sertifikat yang tampil di jendela pratinjau.
+   * Taruh file di `public/certificates/` lalu isi, mis.
+   * { src: '/certificates/cs50p.pdf', alt: 'Sertifikat CS50P Abdulloh Farros', kind: 'pdf' }
+   * (kind: 'pdf' atau 'image'). Biarkan null jika belum ada.
+   */
+  file: { src: string; alt: string; kind: 'image' | 'pdf' } | null;
+  /** Tautan verifikasi resmi dari penerbit (biasanya https://certificates.cs50.io/...). */
   verifyUrl: string | null;
-} = {
-  title: "CS50's Introduction to Programming with Python",
-  institution: 'Harvard University — CS50',
-  status: 'Selesai · sertifikat diperoleh',
-  verifyUrl: null,
-};
+}
+
+export const certificates: Certificate[] = [
+  {
+    number: '01',
+    title: "CS50's Introduction to Programming with Python",
+    issuer: 'Harvard University · CS50',
+    badge: 'CS50P',
+    file: null,
+    verifyUrl: null,
+  },
+];
 
 export const contactCopy =
   'Saya selalu tertarik untuk belajar, membangun, dan menjelajahi penerapan teknologi yang praktis. Punya ide, peluang kolaborasi, atau sekadar ingin ngobrol? Silakan hubungi saya.';
+
+export const heroStats = [
+  {
+    value: String(projects.filter((p) => p.status === 'selesai').length),
+    label: 'Proyek selesai di GitHub',
+    href: '#projects',
+  },
+  {
+    value: String(certificates.length),
+    label: 'Sertifikat Harvard CS50P',
+    href: '#certification',
+  },
+  {
+    value: String(techGroups.flatMap((group) => group.items).length),
+    label: 'Alat & keterampilan',
+    href: '#tech-stack',
+  },
+];

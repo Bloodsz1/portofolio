@@ -6,10 +6,12 @@ interface SectionHeaderProps {
   index: string;
   label: string;
   title: ReactNode;
+  /** Baris kedua judul, ditampilkan dengan warna aksen. */
+  accent?: string;
   description?: string;
 }
 
-export default function SectionHeader({ index, label, title, description }: SectionHeaderProps) {
+export default function SectionHeader({ index, label, title, accent, description }: SectionHeaderProps) {
   return (
     <Reveal className="mb-14 md:mb-20">
       <div className="mb-6 flex items-center gap-3 text-xs font-medium uppercase tracking-label text-muted">
@@ -25,8 +27,14 @@ export default function SectionHeader({ index, label, title, description }: Sect
         <span className="text-line">/</span>
         <span>{label}</span>
       </div>
-      <h2 className="font-display text-5xl leading-[1.05] text-paper sm:text-6xl lg:text-6xl">
+      <h2 className="font-display text-5xl leading-[0.95] text-paper sm:text-6xl lg:text-7xl xl:text-8xl">
         {title}
+        {accent && (
+          <>
+            <br />
+            <span className="text-coral">{accent}</span>
+          </>
+        )}
       </h2>
       {description && (
         <p className="mt-6 max-w-xl text-base leading-relaxed text-muted">{description}</p>

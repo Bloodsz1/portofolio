@@ -23,7 +23,8 @@ Hampir semua teks dan data ada di satu file: [`src/data/portfolio.ts`](src/data/
 | Teks hero, tentang, kontak | `heroCopy`, `aboutParagraphs`, `contactCopy` |
 | Daftar proyek | `projects` |
 | Tech stack dan yang sedang dipelajari | `techGroups`, `exploringItems` |
-| Sertifikat | `certification` |
+| Sertifikat | `certificates` |
+| Logo melayang di latar | `backgroundLogos` |
 
 ### Slot opsional (muncul otomatis saat diisi)
 
@@ -31,7 +32,11 @@ Hampir semua teks dan data ada di satu file: [`src/data/portfolio.ts`](src/data/
 - **Foto profil**: taruh foto di `public/`, lalu isi `PROFILE_PHOTO`. Tanpa foto, section About menampilkan monogram.
 - **Screenshot proyek**: taruh gambar di `public/projects/`, lalu isi `image` pada proyek terkait. Tanpa `image`, kartu memakai cover terminal otomatis.
 - **Demo langsung**: isi `demoUrl` pada proyek. Tombol "Lihat demo" muncul otomatis.
-- **Verifikasi sertifikat**: isi `certification.verifyUrl`.
+- **Sertifikat**: taruh PDF atau gambar di `public/certificates/`, lalu isi `file` pada sertifikat terkait, mis.
+  `{ src: '/certificates/cs50p.pdf', alt: 'Sertifikat CS50P', kind: 'pdf' }`. Baris sertifikat otomatis menjadi tombol
+  yang membuka jendela pratinjau. Isi juga `verifyUrl` (tautan verifikasi resmi dari penerbit) untuk tombol "Buka sumber asli".
+- **Logo Claude di latar**: taruh file logo resmi dari Anthropic di `public/logos/claude.png`, lalu hilangkan tanda
+  komentar pada baris Claude di `backgroundLogos`. Logo Python dan VS Code sudah ada di `public/logos/`.
 
 ### Menambah proyek baru
 

@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
-import { ArrowDownRight, Download, MapPin } from 'lucide-react';
-import { CV_URL, NAME, heroCopy, heroFacts, images } from '@/data/portfolio';
+import { ArrowDown, ArrowUpRight, Asterisk, Award, Download, Github, MapPin } from 'lucide-react';
+import { CV_URL, GITHUB_URL, NAME, PROFILE_PHOTO, heroCopy, heroStats } from '@/data/portfolio';
 
 const container = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.12, delayChildren: 0.9 } },
+  show: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } },
 };
 
 const item = {
@@ -13,115 +13,175 @@ const item = {
 };
 
 export default function Hero() {
+  const firstName = (NAME.split(' ').pop() ?? NAME).toUpperCase();
+
   return (
-    <section id="home" className="relative flex min-h-[100svh] items-end overflow-clip pt-28 pb-16 md:pb-24">
-      <div className="absolute inset-0" aria-hidden="true">
-        <img
-          src={images.hero.src}
-          alt={images.hero.alt}
-          width={940}
-          height={650}
-          fetchPriority="high"
-          className="h-full w-full animate-bleed-in object-cover opacity-60"
-        />
-        <div className="absolute inset-0 bg-ink/70" />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent" />
-        <div className="absolute inset-0 bg-crimson mix-blend-multiply opacity-30" />
-        <div className="absolute inset-0 origin-right animate-wipe-out bg-crimson" />
+    <section id="home" className="relative flex min-h-[100svh] flex-col overflow-clip pt-16">
+      {/* Kata raksasa di latar belakang */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-[16%] flex select-none justify-center md:top-[14%]"
+        aria-hidden="true"
+      >
+        <span className="whitespace-nowrap bg-gradient-to-b from-crimson/80 via-blood/60 to-transparent bg-clip-text font-display text-[clamp(5rem,23vw,24rem)] leading-[0.85] text-transparent">
+          PORTFOLIO
+        </span>
       </div>
 
-      <TechnicalComposition />
+      {/* Foto profil (opsional): muncul di tengah jika PROFILE_PHOTO diisi */}
+      {PROFILE_PHOTO && (
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 top-24 flex items-end justify-center">
+          <img
+            src={PROFILE_PHOTO.src}
+            alt={PROFILE_PHOTO.alt}
+            fetchPriority="high"
+            className="h-[80%] w-auto max-w-[80vw] object-contain object-bottom"
+            style={{
+              maskImage: 'linear-gradient(to bottom, black 78%, transparent)',
+              WebkitMaskImage: 'linear-gradient(to bottom, black 78%, transparent)',
+            }}
+          />
+        </div>
+      )}
 
-      <div className="relative mx-auto w-full max-w-6xl px-6 lg:px-10">
-        <motion.div variants={container} initial="hidden" animate="show" className="max-w-4xl">
-          <motion.div variants={item} className="mb-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-xs font-medium uppercase tracking-label text-muted">
-            <span className="flex items-center gap-2">
-              <span className="relative flex h-2.5 w-2.5 items-center justify-center" aria-hidden="true">
-                <span className="absolute h-full w-full rounded-full bg-crimson animate-pulse-ring" />
-                <span className="h-2.5 w-2.5 rounded-full bg-crimson" />
-              </span>
-              <MapPin size={14} aria-hidden="true" className="text-crimson" />
-              {heroCopy.location}
-            </span>
-            <span className="h-px w-8 bg-line" aria-hidden="true" />
-            <span>{heroCopy.positioning}</span>
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col px-6 lg:px-10">
+        <motion.div variants={container} initial="hidden" animate="show" className="flex flex-1 flex-col">
+          <motion.div variants={item} className="flex items-start justify-between gap-6 pt-10">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-label text-coral">{heroCopy.positioning}</p>
+              <p className="mt-1 text-xs font-semibold uppercase tracking-label text-paper/80">
+                Python · AI · Otomasi
+              </p>
+            </div>
+            <p className="hidden items-center gap-2 text-xs uppercase tracking-label text-muted sm:flex">
+              <span className="h-1.5 w-1.5 rounded-full bg-crimson" aria-hidden="true" />
+              Sedang membangun · 2026
+            </p>
           </motion.div>
 
-          <motion.h1 variants={item} className="font-display text-[3.25rem] leading-[0.98] tracking-tight text-paper sm:text-7xl lg:text-[5rem] xl:text-[6rem]">
-            {NAME.toUpperCase()}
-          </motion.h1>
+          <div className="grid flex-1 items-end gap-12 pb-10 pt-20 lg:grid-cols-12 lg:pt-24">
+            <div className="lg:col-span-6 xl:col-span-5">
+              <motion.h1 variants={item} className="leading-none">
+                <span className="block -rotate-6 font-script text-5xl normal-case text-paper md:text-6xl">
+                  {heroCopy.greeting}
+                </span>
+                <span className="mt-1 block font-display text-[clamp(4.5rem,13vw,10rem)] leading-[0.88] text-paper">
+                  {firstName}
+                  <span className="text-crimson">.</span>
+                </span>
+              </motion.h1>
 
-          <motion.p variants={item} className="mt-8 max-w-2xl font-display text-3xl leading-[1.15] text-paper/90 sm:text-4xl">
-            {heroCopy.headline}
-          </motion.p>
+              <motion.p variants={item} className="mt-8 font-display text-3xl uppercase leading-[1.05] text-coral md:text-4xl">
+                {heroCopy.roles[0]}
+                <br />
+                {heroCopy.roles[1]}
+              </motion.p>
 
-          <motion.p variants={item} className="mt-6 max-w-xl text-base leading-[1.5] text-muted md:text-lg">
-            {heroCopy.description}
-          </motion.p>
+              <motion.p variants={item} className="mt-6 max-w-sm text-base leading-[1.65] text-paper/80">
+                {heroCopy.description}
+              </motion.p>
 
-          <motion.div variants={item} className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <a
-              href="#projects"
-              className="group inline-flex items-center justify-center gap-2 rounded-full bg-paper px-7 py-3.5 text-sm font-medium text-ink transition-all duration-300 hover:bg-crimson hover:text-paper hover:shadow-[0_0_48px_-6px_rgba(227,43,60,0.9)]"
+              <motion.div variants={item} className="mt-8 flex flex-col items-start gap-5">
+                <a
+                  href="#projects"
+                  className="group inline-flex items-center gap-10 bg-crimson px-6 py-4 text-sm font-medium text-paper transition-colors duration-300 hover:bg-paper hover:text-ink"
+                >
+                  Lihat karya saya
+                  <ArrowDown
+                    size={18}
+                    aria-hidden="true"
+                    className="transition-transform duration-300 group-hover:translate-y-0.5"
+                  />
+                </a>
+                <p className="flex items-center gap-2 text-[0.7rem] font-medium uppercase tracking-label text-muted">
+                  <MapPin size={14} aria-hidden="true" className="text-crimson" />
+                  {heroCopy.location}
+                </p>
+              </motion.div>
+            </div>
+
+            <motion.aside
+              variants={item}
+              aria-label="Sorotan"
+              className="lg:col-span-4 lg:col-start-9 xl:col-span-3 xl:col-start-10"
             >
-              Lihat Proyek Saya
-              <ArrowDownRight size={16} aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
-            </a>
-            <a
-              href="#about"
-              className="inline-flex items-center justify-center rounded-full border border-paper/30 px-7 py-3.5 text-sm font-medium text-paper transition-colors duration-300 hover:border-crimson hover:text-crimson"
-            >
-              Tentang Saya
-            </a>
-            {CV_URL && (
-              <a
-                href={CV_URL}
-                download
-                className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-3.5 text-sm font-medium text-muted transition-colors duration-300 hover:text-paper"
-              >
-                <Download size={16} aria-hidden="true" />
-                Unduh CV
-              </a>
-            )}
-          </motion.div>
-
-          <motion.dl variants={item} className="mt-12 grid max-w-xl grid-cols-3 gap-6 border-t border-line pt-6">
-            {heroFacts.map((fact) => (
-              <div key={fact.label}>
-                <dt className="sr-only">{fact.label}</dt>
-                <dd>
-                  <span className="block font-display text-2xl leading-none text-paper md:text-3xl">{fact.value}</span>
-                  <span className="mt-2 block text-xs leading-snug text-muted" aria-hidden="true">
-                    {fact.label}
-                  </span>
-                </dd>
+              <div className="mb-8 flex items-center gap-4">
+                <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-line bg-surface/60 text-crimson">
+                  <Asterisk size={28} aria-hidden="true" />
+                </span>
+                <p className="text-base leading-snug text-paper">
+                  {heroCopy.tagline[0]}
+                  <br />
+                  {heroCopy.tagline[1]}
+                </p>
               </div>
-            ))}
-          </motion.dl>
+
+              <ul className="border-t border-line">
+                {heroStats.map((stat) => (
+                  <li key={stat.label} className="border-b border-line">
+                    <a href={stat.href} className="group flex items-center gap-6 py-5">
+                      <span className="min-w-[4.5rem] font-display text-6xl leading-none text-crimson md:text-7xl">
+                        {stat.value}
+                      </span>
+                      <span className="flex flex-1 items-center justify-between gap-3 text-[0.7rem] font-medium uppercase leading-snug tracking-label text-muted transition-colors duration-300 group-hover:text-paper">
+                        {stat.label}
+                        <ArrowUpRight
+                          size={14}
+                          aria-hidden="true"
+                          className="shrink-0 text-crimson opacity-60 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:opacity-100"
+                        />
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+
+              {CV_URL ? (
+                <a
+                  href={CV_URL}
+                  download
+                  className="mt-6 inline-flex items-center gap-3 text-xs font-medium uppercase tracking-label text-paper transition-colors duration-300 hover:text-crimson"
+                >
+                  <Download size={16} aria-hidden="true" className="text-crimson" />
+                  Unduh CV
+                </a>
+              ) : (
+                <a
+                  href="#certification"
+                  className="mt-6 inline-flex items-center gap-3 text-xs font-medium uppercase tracking-label text-paper transition-colors duration-300 hover:text-crimson"
+                >
+                  <Award size={16} aria-hidden="true" className="text-crimson" />
+                  Lihat sertifikat
+                </a>
+              )}
+            </motion.aside>
+          </div>
+
+          <motion.div variants={item} className="border-t border-line py-6">
+            <div className="flex items-center justify-between gap-4 text-[0.7rem] font-medium uppercase tracking-label text-muted">
+              <a
+                href={GITHUB_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-4 transition-colors duration-300 hover:text-paper"
+              >
+                <span className="flex h-12 w-12 items-center justify-center rounded-full border border-crimson text-paper transition-colors duration-300 group-hover:bg-crimson">
+                  <Github size={18} aria-hidden="true" />
+                </span>
+                <span className="text-paper">Lihat GitHub</span>
+                <span className="hidden sm:inline">Python / AI</span>
+              </a>
+              <a
+                href="#about"
+                className="hidden items-center gap-2 transition-colors duration-300 hover:text-paper md:flex"
+              >
+                Scroll untuk melihat
+                <ArrowDown size={14} aria-hidden="true" className="text-crimson" />
+              </a>
+              <span className="hidden sm:block">Proyek pilihan / 2026</span>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
-  );
-}
-
-function TechnicalComposition() {
-  return (
-    <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-      <svg
-        className="absolute right-[-12%] top-[18%] h-[90vmin] w-[90vmin] text-paper/15 md:right-[-6%] md:top-[12%]"
-        viewBox="0 0 400 400"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="0.6"
-      >
-        <circle cx="200" cy="200" r="190" />
-        <circle cx="200" cy="200" r="140" strokeDasharray="2 6" />
-        <circle cx="200" cy="200" r="90" className="text-crimson" stroke="currentColor" />
-        <circle cx="200" cy="200" r="40" />
-        <line x1="200" y1="0" x2="200" y2="400" />
-        <line x1="0" y1="200" x2="400" y2="200" />
-      </svg>
-      <div className="absolute inset-x-0 top-0 h-px bg-line" />
-    </div>
   );
 }

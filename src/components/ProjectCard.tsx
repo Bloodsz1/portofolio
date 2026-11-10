@@ -19,7 +19,7 @@ export default function ProjectCard({ project, delay = 0 }: ProjectCardProps) {
               src={project.image.src}
               alt={project.image.alt}
               loading="lazy"
-              className="h-full w-full object-cover grayscale transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0"
+              className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
             />
           ) : (
             <ProjectCover title={project.title} tech={project.tech} />
@@ -27,8 +27,10 @@ export default function ProjectCard({ project, delay = 0 }: ProjectCardProps) {
           <div className="absolute inset-0 bg-crimson mix-blend-multiply opacity-0 transition-opacity duration-500 group-hover:opacity-50" aria-hidden="true" />
           <div className="absolute inset-0 bg-gradient-to-t from-surface/90 via-transparent to-transparent" aria-hidden="true" />
           <div className="absolute inset-x-0 top-0 hidden h-[2px] bg-crimson shadow-[0_0_18px_4px_rgba(227,43,60,0.7)] group-hover:block group-hover:animate-scan" aria-hidden="true" />
-          <div className="absolute left-5 top-5 flex items-center gap-3">
-            <span className="font-display text-5xl leading-none text-paper">{project.number}</span>
+          <div className="absolute left-4 top-4">
+            <span className="block rounded-lg bg-ink/80 px-3 py-1.5 font-display text-3xl leading-none text-paper backdrop-blur-sm">
+              {project.number}
+            </span>
           </div>
           {project.status !== 'selesai' && (
             <StatusBadge status={project.status} className="absolute right-4 top-4 bg-ink/80 backdrop-blur-sm" />

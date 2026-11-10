@@ -37,7 +37,7 @@ export default function Contact() {
   return (
     <section id="contact" className="relative border-t border-line py-24 md:py-36">
       <div className="mx-auto max-w-6xl px-6 lg:px-10">
-        <SectionHeader index="06" label="Kontak" title={<>Mari<br />terhubung</>} description={contactCopy} />
+        <SectionHeader index="06" label="Kontak" title="Mari" accent="terhubung." description={contactCopy} />
 
         <Reveal className="relative mb-6 h-56 overflow-hidden rounded-2xl border border-line md:h-72">
           <img

@@ -18,6 +18,12 @@
     color: #F2EFEB;
   }
 
+  h1,
+  h2,
+  h3 {
+    @apply uppercase;
+  }
+
   :focus-visible {
     outline: 2px solid #E32B3C;
     outline-offset: 3px;

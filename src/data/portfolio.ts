@@ -25,7 +25,7 @@ export const PROFILE_PHOTO: { src: string; alt: string } | null = {
 export const images = {
   contact: {
     src: '/images/github-avatar.webp',
-    alt: 'Foto profil GitHub Abdulloh Farros di perbukitan berkabut',
+    alt: 'Swafoto Abdulloh Farros berkacamata kuning di kebun teh',
   },
 } as const;
 

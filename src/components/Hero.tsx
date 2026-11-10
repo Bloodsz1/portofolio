@@ -54,14 +54,14 @@ export default function Hero() {
             fetchPriority="high"
             className="h-[72%] w-auto max-w-[110vw] object-contain object-bottom opacity-70 md:h-[88%] md:opacity-100"
             style={{
-              maskImage: 'radial-gradient(ellipse 52% 62% at 50% 46%, black 52%, transparent 100%)',
-              WebkitMaskImage: 'radial-gradient(ellipse 52% 62% at 50% 46%, black 52%, transparent 100%)',
+              maskImage: 'linear-gradient(to bottom, black 80%, transparent)',
+              WebkitMaskImage: 'linear-gradient(to bottom, black 80%, transparent)',
             }}
           />
         </motion.div>
       )}
 
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col px-6 lg:px-10">
+      <div className="relative z-10 mx-auto flex w-full max-w-[92rem] flex-1 flex-col px-5 lg:px-8">
         <motion.div variants={container} initial="hidden" animate="show" className="flex flex-1 flex-col">
           <motion.div variants={item} className="flex items-start justify-between gap-6 pt-10">
             <div>
@@ -82,7 +82,7 @@ export default function Hero() {
                 <span className="mb-5 ml-1 block origin-bottom-left -rotate-3 pb-1 font-script text-4xl normal-case leading-tight text-paper md:mb-7 md:text-5xl">
                   {heroCopy.greeting}
                 </span>
-                <span className="block font-display text-[clamp(4.5rem,13vw,10rem)] leading-[0.88] text-paper">
+                <span className="block font-display text-[clamp(3.75rem,10.5vw,8rem)] leading-[0.88] text-paper">
                   {firstName}
                   <span className="text-crimson">.</span>
                 </span>

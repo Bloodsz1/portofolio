@@ -44,12 +44,12 @@ export default function Navbar({ motionOff, onToggleMotion }: NavbarProps) {
         scrolled || open ? 'border-b border-line bg-ink/95 backdrop-blur-md' : 'border-b border-transparent bg-transparent'
       }`}
     >
-      <nav aria-label="Main navigation" className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6 lg:px-10">
+      <nav aria-label="Navigasi utama" className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6 lg:px-10">
         <a href="#home" onClick={closeMenu} className="font-display text-2xl tracking-wide text-paper">
           FARROS<span className="text-crimson">.</span>
         </a>
 
-        <ul className="hidden items-center gap-7 lg:flex">
+        <ul className="hidden items-center gap-6 lg:flex">
           {navItems.map((item) => {
             const isActive = active === item.id;
             return (

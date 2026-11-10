@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-
-const items = ['Python', 'Software Development', 'Applied AI', 'API Integration', 'Automation', 'Building Practical Things'];
+import { tickerItems } from '@/data/portfolio';
 
 export default function Ticker() {
-  const row = [...items, ...items];
+  const row = [...tickerItems, ...tickerItems];
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
